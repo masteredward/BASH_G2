@@ -11,10 +11,38 @@ src_path=~ # Caminho Absoluto Local
 dest_path=~ # Caminho Absoluto Remoto
 remote_host=localhost # Host Remoto Padrão
 
+# Verificando se as ferramentas RSYNC e SCP estão instaladas
+if test ! -f /usr/bin/scp
+then
+	clear
+	echo "A ferramenta SCP não está instalada. Deseja instala-la? Responda 'S' para instalar"
+	read opt_install_scp
+	if test $opt_install_scp == 'S'
+	then
+		yum install openssh-clients -y
+	else
+		exit
+	fi
+	unset opt_install_scp
+fi
+if test ! -f /usr/bin/rsync
+then
+	clear
+	echo "A ferramenta RSYNC não está instalada. Deseja instala-la? Responda 'S' para instalar"
+	read opt_install_rsync
+	if test $opt_install_rsync == 'S'
+	then
+		yum install rsync -y
+	else
+		exit
+	fi
+	unset opt_install_rsync
+fi
+
 # Função do Cabeçalho do Menu
 function fn_header {
 	clear
-	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.6 - Para Fedora/RHEL/CentOS"
+	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.7 - Para Fedora/RHEL/CentOS"
 	echo "Autor: Eduardo Medeiros Silva"
 	echo "http://www.profedumedeiros.net"
 	echo
