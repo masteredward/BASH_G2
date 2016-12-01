@@ -65,8 +65,10 @@ function fn_change_tool {
 # Função de Seleção da Porta SSH
 function fn_change_port {
 	clear
-	echo "Digite a porta SSH do servidor remoto:"
+	echo "Digite a porta SSH do host remoto:"
+	echo
 	echo "Atualmente: $ssh_port"
+	echo
 	echo
 	echo -n "Digite a porta desejada: "
 	read ssh_port
@@ -75,11 +77,25 @@ function fn_change_port {
 # Função de Seleção de Host Remoto
 function fn_change_host {
 	clear
-	echo "Digite o endereço do servidor remoto:"
+	echo "Digite o endereço do host remoto:"
+	echo
 	echo "Atualmente: $remote_host"
 	echo
-	echo -n "Digite o IPv4, IPv6 ou Hostname do host remoto: "
+	echo
+	echo -n "Digite o IPv4, IPv6 ou Hostname do host remoto desejado: "
 	read remote_host
+}
+
+# Função de Seleção do Usuário do Host Remoto
+function fn_change_host {
+	clear
+	echo "Digite o nome do usuário do host remoto:"
+	echo
+	echo "Atualmente: $ssh_user"
+	echo
+	echo
+	echo -n "Digite o nome do usuário do host remoto desejado "
+	read ssh_user
 }
 
 # Função de Exibição do Menu
@@ -88,7 +104,7 @@ function fn_show_menu {
 	echo
 	echo "-- Menu de Cópia --"
 	PS3='Escolha uma das opções: '
-	options=("Selecionar o modo de operação ($cp_mode)" "Selecionar a ferramenta ($cp_tool)" "Selecionar a porta destino SSH ($ssh_port)" "Selecionar o endereço do computador remoto ($remote_host)" "Selecionar o usuário do computador remoto ($ssh_user)" "Caminho absoluto de origem ($local_path)" "Caminho absoluto de destino ($remote_path)" "Efetuar a cópia!" "Cancelar e sair do script")
+	options=("Selecionar o modo de operação ($cp_mode)" "Selecionar a ferramenta ($cp_tool)" "Selecionar a porta destino SSH ($ssh_port)" "Selecionar o endereço do host remoto ($remote_host)" "Selecionar o usuário do host remoto ($ssh_user)" "Caminho absoluto de origem ($local_path)" "Caminho absoluto de destino ($remote_path)" "Efetuar a cópia!" "Cancelar e sair do script")
 	select opt in "${options[@]}"
 	do
 		case $opt in
@@ -104,11 +120,11 @@ function fn_show_menu {
 				fn_change_port
 				fn_show_menu
 				;;
-			"Selecionar o endereço do computador remoto ($remote_host)")
+			"Selecionar o endereço do host remoto ($remote_host)")
 				fn_change_host
 				fn_show_menu
 				;;
-			"Selecionar o usuário do computador remoto ($ssh_user)")
+			"Selecionar o usuário do host remoto ($ssh_user)")
 				fn_show_menu
 				;;
 			"Caminho absoluto de origem ($local_path)")
