@@ -164,6 +164,8 @@ function fn_change_dest_path {
 function fn_execute_copy {
 	clear
 	# Selecionando a sintaxe ideal para o modo e ferramenta escolhidos
+	# O script utiliza o RSYNC como sincronizador de arquivos recursivo (-a), enviando ou baixando os arquivos via SSH com compressão.
+	# O script utiliza o SCP para sobrescrever os arquivos no destino recursivamente caso existam.
 	if test $cp_mode == "upload" && test $cp_tool == "rsync"
 	then
 		echo "Utilizando a ferramenta RSYNC em modo UPLOAD..."
