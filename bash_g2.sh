@@ -209,9 +209,9 @@ function fn_show_menu {
 				;;
 			"Efetuar a cópia!")
 				echo
-				echo -n "Você tem certeza? Responda "S" para continuar: "
+				echo -n "Você tem certeza? Responda 'S' para continuar: "
 				read opt_confirm
-				if test opt_confirm == "S"
+				if test $opt_confirm == "S"
 				then
 					fn_execute_copy
 				fi
