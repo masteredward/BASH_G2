@@ -121,7 +121,7 @@ function fn_show_menu {
 				clear
 				exit
 				;;
-			"Cancelar e sair do script"
+			"Cancelar e sair do script")
 				clear
 				echo "Script encerrado!"
 				exit
