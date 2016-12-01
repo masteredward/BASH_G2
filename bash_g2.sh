@@ -127,7 +127,7 @@ function fn_change_dest_path {
 }
 
 # Função do Processo de Cópia
-function fn_execute_copy
+function fn_execute_copy {
 	clear
 	# Selecionando a sintaxe ideal para o modo e ferramenta escolhidos
 	if test $cp_mode == "upload" && test $cp_tool == "rsync"
@@ -155,6 +155,7 @@ function fn_execute_copy
 		echo "Concluído!"
 		exit
 	fi
+}
 
 # Função de Exibição do Menu
 function fn_show_menu {
