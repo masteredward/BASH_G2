@@ -87,7 +87,7 @@ function fn_change_host {
 }
 
 # Função de Seleção do Usuário do Host Remoto
-function fn_change_host {
+function fn_change_user {
 	clear
 	echo "Digite o nome do usuário do host remoto:"
 	echo
@@ -125,6 +125,7 @@ function fn_show_menu {
 				fn_show_menu
 				;;
 			"Selecionar o usuário do host remoto ($ssh_user)")
+				fn_change_user
 				fn_show_menu
 				;;
 			"Caminho absoluto de origem ($local_path)")
