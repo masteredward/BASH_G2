@@ -14,7 +14,7 @@ remote_host=localhost # Host Remoto Padrão
 # Função do Cabeçalho do Menu
 function fn_header {
 	clear
-	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.4 - Para Fedora/RHEL/CentOS"
+	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.5 - Para Fedora/RHEL/CentOS"
 	echo "Autor: Eduardo Medeiros Silva"
 	echo "http://www.profedumedeiros.net"
 	echo
@@ -126,6 +126,36 @@ function fn_change_dest_path {
 	read dest_path
 }
 
+# Função do Processo de Cópia
+function fn_execute_copy
+	clear
+	# Selecionando a sintaxe ideal para o modo e ferramenta escolhidos
+	if test $cp_mode == "upload" && test $cp_tool == "rsync"
+	then
+		rsync
+		echo
+		echo "Concluído!"
+		exit
+	elif test $cp_mode == "upload" && test $cp_tool == "scp"
+	then
+		scp -r -P $ssh_port $src_path $remote_host:$dest_path
+		echo
+		echo "Concluído!"
+		exit
+	elif test $cp_mode == "download" && test $cp_tool == "rsync"
+	then
+		rsync
+		echo
+		echo "Concluído!"
+		exit
+	elif test $cp_mode == "download" && test $cp_tool == "scp"
+	then
+		scp -r -P $ssh_port $remote_host:$src_path $dest_path
+		echo
+		echo "Concluído!"
+		exit
+	fi
+
 # Função de Exibição do Menu
 function fn_show_menu {
 	fn_header
@@ -165,8 +195,8 @@ function fn_show_menu {
 				fn_show_menu
 				;;
 			"Efetuar a cópia!")
-				clear
-				exit
+				fn_execute_copy
+				fn_show_menu
 				;;
 			"Cancelar e sair do script")
 				clear
