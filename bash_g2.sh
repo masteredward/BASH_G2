@@ -14,7 +14,7 @@ remote_host=localhost # Host Remoto Padrão
 # Função do Cabeçalho do Menu
 function fn_header {
 	clear
-	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.5 - Para Fedora/RHEL/CentOS"
+	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.6 - Para Fedora/RHEL/CentOS"
 	echo "Autor: Eduardo Medeiros Silva"
 	echo "http://www.profedumedeiros.net"
 	echo
@@ -132,24 +132,36 @@ function fn_execute_copy {
 	# Selecionando a sintaxe ideal para o modo e ferramenta escolhidos
 	if test $cp_mode == "upload" && test $cp_tool == "rsync"
 	then
+		echo "Utilizando a ferramenta RSYNC em modo UPLOAD..."
+		echo "Se você estiver usando autenticação no SSH por senha, digite-a abaixo:"
+		echo
 		rsync -avz -e "ssh -p $ssh_port -l $ssh_user" --progress $src_path $remote_host:$dest_path
 		echo
 		echo "Concluído!"
 		exit
 	elif test $cp_mode == "upload" && test $cp_tool == "scp"
 	then
+		echo "Utilizando a ferramenta SCP em modo UPLOAD..."
+		echo "Se você estiver usando autenticação no SSH por senha, digite-a abaixo:"
+		echo
 		scp -r -P $ssh_port $src_path $ssh_user@$remote_host:$dest_path
 		echo
 		echo "Concluído!"
 		exit
 	elif test $cp_mode == "download" && test $cp_tool == "rsync"
 	then
+		echo "Utilizando a ferramenta RSYNC em modo DOWNLOAD..."
+		echo "Se você estiver usando autenticação no SSH por senha, digite-a abaixo:"
+		echo
 		rsync -avz -e "ssh -p $ssh_port -l $ssh_user" --progress $remote_host:$src_path $dest_path
 		echo
 		echo "Concluído!"
 		exit
 	elif test $cp_mode == "download" && test $cp_tool == "scp"
 	then
+		echo "Utilizando a ferramenta SCP em modo DOWNLOAD..."
+		echo "Se você estiver usando autenticação no SSH por senha, digite-a abaixo:"
+		echo
 		scp -r -P $ssh_port $ssh_user@$remote_host:$src_path $dest_path
 		echo
 		echo "Concluído!"
@@ -196,7 +208,14 @@ function fn_show_menu {
 				fn_show_menu
 				;;
 			"Efetuar a cópia!")
-				fn_execute_copy
+				echo
+				echo -n "Você tem certeza? Responda "S" para continuar: "
+				read opt_confirm
+				if test opt_confirm == "S"
+				then
+					fn_execute_copy
+				fi
+				unset opt_confirm
 				fn_show_menu
 				;;
 			"Cancelar e sair do script")
