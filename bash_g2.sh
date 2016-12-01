@@ -115,7 +115,7 @@ function fn_change_src_path {
 }
 
 # Função de Seleção do Caminho de Destino
-function fn_change_src_path {
+function fn_change_dest_path {
 	clear
 	echo "Escolha o caminho absoluto do destino da cópia:"
 	echo
