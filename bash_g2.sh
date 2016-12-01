@@ -14,7 +14,7 @@ remote_host=localhost # Host Remoto Padrão
 # Função do Cabeçalho do Menu
 function fn_header {
 	clear
-	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.2 - Para Fedora/RHEL/CentOS"
+	echo "Script Assistente de Cópia por RSYNC/SCP - Versão 0.4 - Para Fedora/RHEL/CentOS"
 	echo "Autor: Eduardo Medeiros Silva"
 	echo "http://www.profedumedeiros.net"
 	echo
