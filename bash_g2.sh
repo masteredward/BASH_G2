@@ -75,7 +75,7 @@ function fn_change_port {
 # Função de Seleção de Host Remoto
 function fn_change_host {
 	clear
-	echo "Digite o endereço do servidor remoto: 
+	echo "Digite o endereço do servidor remoto:"
 	echo "Atualmente: $remote_host"
 	echo
 	echo -n "Digite o IPv4, IPv6 ou Hostname do host remoto: "
