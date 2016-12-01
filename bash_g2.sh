@@ -132,7 +132,7 @@ function fn_execute_copy {
 	# Selecionando a sintaxe ideal para o modo e ferramenta escolhidos
 	if test $cp_mode == "upload" && test $cp_tool == "rsync"
 	then
-		rsync -avz -e 'ssh -p $ssh_port -l $ssh_user'--progress $src_path $remote_host:$dest_path
+		rsync -avz -e "ssh -p $ssh_port -l $ssh_user" --progress $src_path $remote_host:$dest_path
 		echo
 		echo "Concluído!"
 		exit
@@ -144,7 +144,7 @@ function fn_execute_copy {
 		exit
 	elif test $cp_mode == "download" && test $cp_tool == "rsync"
 	then
-		rsync -avz -e 'ssh -p $ssh_port -l $ssh_user'--progress $remote_host:$src_path $dest_path
+		rsync -avz -e "ssh -p $ssh_port -l $ssh_user" --progress $remote_host:$src_path $dest_path
 		echo
 		echo "Concluído!"
 		exit
