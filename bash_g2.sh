@@ -21,8 +21,9 @@ then
 	then
 		yum install openssh-clients -y
 	else
-		echo
+		clear
 		echo "Abortando!"
+		echo
 		exit
 	fi
 	unset opt_install_scp
@@ -36,8 +37,9 @@ then
 	then
 		yum install rsync -y
 	else
-		echo
+		clear
 		echo "Abortando!"
+		echo
 		exit
 	fi
 	unset opt_install_rsync
@@ -170,6 +172,7 @@ function fn_execute_copy {
 		rsync -avz -e "ssh -p $ssh_port -l $ssh_user" --progress $src_path $remote_host:$dest_path
 		echo
 		echo "Concluído!"
+		echo
 		exit
 	elif test $cp_mode == "upload" && test $cp_tool == "scp"
 	then
@@ -179,6 +182,7 @@ function fn_execute_copy {
 		scp -r -P $ssh_port $src_path $ssh_user@$remote_host:$dest_path
 		echo
 		echo "Concluído!"
+		echo
 		exit
 	elif test $cp_mode == "download" && test $cp_tool == "rsync"
 	then
@@ -188,6 +192,7 @@ function fn_execute_copy {
 		rsync -avz -e "ssh -p $ssh_port -l $ssh_user" --progress $remote_host:$src_path $dest_path
 		echo
 		echo "Concluído!"
+		echo
 		exit
 	elif test $cp_mode == "download" && test $cp_tool == "scp"
 	then
@@ -197,6 +202,7 @@ function fn_execute_copy {
 		scp -r -P $ssh_port $ssh_user@$remote_host:$src_path $dest_path
 		echo
 		echo "Concluído!"
+		echo
 		exit
 	fi
 }
@@ -253,6 +259,7 @@ function fn_show_menu {
 			"Cancelar e sair do script")
 				clear
 				echo "Script encerrado!"
+				echo
 				exit
 				;;
 			*) echo "Opção Inválida";;
