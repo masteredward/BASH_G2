@@ -21,6 +21,8 @@ then
 	then
 		yum install openssh-clients -y
 	else
+		echo
+		echo "Abortando!"
 		exit
 	fi
 	unset opt_install_scp
@@ -34,6 +36,8 @@ then
 	then
 		yum install rsync -y
 	else
+		echo
+		echo "Abortando!"
 		exit
 	fi
 	unset opt_install_rsync
